@@ -41,7 +41,7 @@ public class ManualSwerveModuleDriveCommand extends Command {
 
   @Override
   public void execute() {
-    module.setState(getDrive(), getDrive());
+    module.setState(getDrive(), -getDrive());
   }
 
   @Override

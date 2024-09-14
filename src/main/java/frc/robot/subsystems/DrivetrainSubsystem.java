@@ -23,9 +23,9 @@ import frc.robot.Constants.DrivetrainConstants;
 
 public class DrivetrainSubsystem extends SubsystemBase {
   public final SwerveModule frontLeftModule; // this 'module' is public because the motor controllers are sometimes used to test other things
-  private final SwerveModule backLeftModule;
-  private final SwerveModule backRightModule;
-  private final SwerveModule frontRightModule;
+  // private final SwerveModule backLeftModule;
+  // private final SwerveModule backRightModule;
+  // private final SwerveModule frontRightModule;
 
   private final AHRS navx;
 
@@ -37,24 +37,24 @@ public class DrivetrainSubsystem extends SubsystemBase {
         Ports.FL_ENCODER,
         "front left",
         DrivetrainConstants.FRONT_LEFT_MODULE_STEER_OFFSET_RADIANS);
-    backLeftModule = new SwerveModule(
-        Ports.BL_DRIVE,
-        Ports.BL_STEER,
-        Ports.BL_ENCODER,
-        "back left",
-        DrivetrainConstants.BACK_LEFT_MODULE_STEER_OFFSET_RADIANS);
-    backRightModule = new SwerveModule(
-        Ports.BR_DRIVE,
-        Ports.BR_STEER,
-        Ports.BR_ENCODER,
-        "back right",
-        DrivetrainConstants.BACK_RIGHT_MODULE_STEER_OFFSET_RADIANS);
-    frontRightModule = new SwerveModule(
-        Ports.BR_DRIVE,
-        Ports.BR_STEER,
-        Ports.BR_ENCODER,
-        "front right",
-        DrivetrainConstants.FRONT_RIGHT_MODULE_STEER_OFFSET_RADIANS);
+    // backLeftModule = new SwerveModule(
+    //     Ports.BL_DRIVE,
+    //     Ports.BL_STEER,
+    //     Ports.BL_ENCODER,
+    //     "back left",
+    //     DrivetrainConstants.BACK_LEFT_MODULE_STEER_OFFSET_RADIANS);
+    // backRightModule = new SwerveModule(
+    //     Ports.BR_DRIVE,
+    //     Ports.BR_STEER,
+    //     Ports.BR_ENCODER,
+    //     "back right",
+    //     DrivetrainConstants.BACK_RIGHT_MODULE_STEER_OFFSET_RADIANS);
+    // frontRightModule = new SwerveModule(
+    //     Ports.BR_DRIVE,
+    //     Ports.BR_STEER,
+    //     Ports.BR_ENCODER,
+    //     "front right",
+    //     DrivetrainConstants.FRONT_RIGHT_MODULE_STEER_OFFSET_RADIANS);
 
     navx = new AHRS(SPI.Port.kMXP, (byte) 200);
 

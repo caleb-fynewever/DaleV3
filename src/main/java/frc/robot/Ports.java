@@ -20,8 +20,8 @@ public class Ports {
      * DIO
      */
 
-    public static final int FL_ENCODER = 0;
-    public static final int BL_ENCODER = 1;
-    public static final int BR_ENCODER = 2;
-    public static final int FR_ENCODER = 3;
+    public static final int FL_ENCODER = 2;
+    // public static final int BL_ENCODER = 1;
+    // public static final int BR_ENCODER = 2;
+    // public static final int FR_ENCODER = 3;
 }
