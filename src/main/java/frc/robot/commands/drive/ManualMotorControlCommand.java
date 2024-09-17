@@ -11,7 +11,7 @@ import com.team2052.swerve.SwerveModule;
 import edu.wpi.first.math.filter.SlewRateLimiter;
 import edu.wpi.first.wpilibj2.command.Command;
 
-public class ManualSwerveModuleDriveCommand extends Command {
+public class ManualMotorControlCommand extends Command {
   public SwerveModule module;
 
   private final DoubleSupplier xSupplier;
@@ -20,7 +20,7 @@ public class ManualSwerveModuleDriveCommand extends Command {
   private final SlewRateLimiter xLimiter;
   private final SlewRateLimiter yLimiter;
 
-  public ManualSwerveModuleDriveCommand(
+  public ManualMotorControlCommand(
       DoubleSupplier xSupplier,
       DoubleSupplier ySupplier,
       SwerveModule module) {

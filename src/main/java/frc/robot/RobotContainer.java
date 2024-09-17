@@ -9,7 +9,7 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.commands.drive.DefaultDriveCommand;
-import frc.robot.commands.drive.ManualSwerveModuleDriveCommand;
+import frc.robot.commands.drive.ManualMotorControlCommand;
 import frc.robot.subsystems.DrivetrainSubsystem;
 
 public class RobotContainer {
@@ -42,8 +42,8 @@ public class RobotContainer {
   }
 
   private void configureBindings() {
-    JoystickButton manualDriveButton = new JoystickButton(translationJoystick, 1);
-    manualDriveButton.whileTrue(new ManualSwerveModuleDriveCommand(translationJoystick::getY, translationJoystick::getX, drivetrain.frontLeftModule));
+    JoystickButton manualMotorButton = new JoystickButton(translationJoystick, 1);
+    manualMotorButton.whileTrue(new ManualMotorControlCommand(translationJoystick::getY, translationJoystick::getX, drivetrain.frontLeftModule));
   }
 
   public Command getAutonomousCommand() {
