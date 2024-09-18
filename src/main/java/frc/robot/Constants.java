@@ -8,14 +8,14 @@ import edu.wpi.first.math.util.Units;
 public class Constants {
     public class DrivetrainConstants {
         // Left-to-right distance between drivetrain wheels
-        public static final double DRIVETRAIN_TRACKWIDTH_METERS = Units.inchesToMeters(0);
+        public static final double DRIVETRAIN_TRACKWIDTH_METERS = Units.inchesToMeters(20.5);
         // Front-to-back distance between drivetrain wheels
-        public static final double DRIVETRAIN_WHEELBASE_METERS = Units.inchesToMeters(0);
+        public static final double DRIVETRAIN_WHEELBASE_METERS = Units.inchesToMeters(20.5);
 
-        public static final Rotation2d FRONT_LEFT_MODULE_STEER_OFFSET_RADIANS = Rotation2d.fromDegrees(-0);
-        public static final Rotation2d BACK_LEFT_MODULE_STEER_OFFSET_RADIANS = Rotation2d.fromDegrees(-0);
-        public static final Rotation2d BACK_RIGHT_MODULE_STEER_OFFSET_RADIANS = Rotation2d.fromDegrees(-0);
-        public static final Rotation2d FRONT_RIGHT_MODULE_STEER_OFFSET_RADIANS = Rotation2d.fromDegrees(-0);
+        public static final Rotation2d FRONT_LEFT_MODULE_STEER_OFFSET = Rotation2d.fromDegrees(330);
+        public static final Rotation2d BACK_LEFT_MODULE_STEER_OFFSET = Rotation2d.fromDegrees(330);
+        public static final Rotation2d BACK_RIGHT_MODULE_STEER_OFFSET = Rotation2d.fromDegrees(330);
+        public static final Rotation2d FRONT_RIGHT_MODULE_STEER_OFFSET = Rotation2d.fromDegrees(330);
 
         public static final SwerveDriveKinematics kinematics = new SwerveDriveKinematics(
                 // Front left

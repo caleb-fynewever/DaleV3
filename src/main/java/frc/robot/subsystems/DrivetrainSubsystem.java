@@ -36,25 +36,25 @@ public class DrivetrainSubsystem extends SubsystemBase {
         Ports.FL_STEER,
         Ports.FL_ENCODER,
         "front left",
-        DrivetrainConstants.FRONT_LEFT_MODULE_STEER_OFFSET_RADIANS);
+        DrivetrainConstants.FRONT_LEFT_MODULE_STEER_OFFSET);
     // backLeftModule = new SwerveModule(
     //     Ports.BL_DRIVE,
     //     Ports.BL_STEER,
     //     Ports.BL_ENCODER,
     //     "back left",
-    //     DrivetrainConstants.BACK_LEFT_MODULE_STEER_OFFSET_RADIANS);
+    //     DrivetrainConstants.BACK_LEFT_MODULE_STEER_OFFSET);
     // backRightModule = new SwerveModule(
     //     Ports.BR_DRIVE,
     //     Ports.BR_STEER,
     //     Ports.BR_ENCODER,
     //     "back right",
-    //     DrivetrainConstants.BACK_RIGHT_MODULE_STEER_OFFSET_RADIANS);
+    //     DrivetrainConstants.BACK_RIGHT_MODULE_STEER_OFFSET);
     // frontRightModule = new SwerveModule(
     //     Ports.BR_DRIVE,
     //     Ports.BR_STEER,
     //     Ports.BR_ENCODER,
     //     "front right",
-    //     DrivetrainConstants.FRONT_RIGHT_MODULE_STEER_OFFSET_RADIANS);
+    //     DrivetrainConstants.FRONT_RIGHT_MODULE_STEER_OFFSET);
 
     navx = new AHRS(SPI.Port.kMXP, (byte) 200);
 
@@ -146,7 +146,15 @@ public class DrivetrainSubsystem extends SubsystemBase {
 
   @Override
   public void periodic() {
+    debug();
     frontLeftModule.updateSteer();
+  }
+
+  public void debug() {
+    frontLeftModule.debug();
+    // backRightModule.debug();
+    // backLeftModule.debug();
+    // frontRightModule.debug();
   }
 
   public static double getMaxVelocityMetersPerSecond() {

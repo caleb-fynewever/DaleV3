@@ -25,18 +25,18 @@ public class RobotContainer {
     rotationJoystick = new Joystick(1);
 
 
-    // drivetrain.setDefaultCommand(
-    //   new DefaultDriveCommand(
-    //       // Forward velocity supplier.
-    //       translationJoystick::getY,
-    //       // Sideways velocity supplier.
-    //       translationJoystick::getX,
-    //       // Rotation velocity supplier.
-    //       rotationJoystick::getX,
-    //       () -> false,
-    //       drivetrain
-    //   )
-    // );
+    drivetrain.setDefaultCommand(
+      new DefaultDriveCommand(
+          // Forward velocity supplier.
+          translationJoystick::getY,
+          // Sideways velocity supplier.
+          translationJoystick::getX,
+          // Rotation velocity supplier.
+          translationJoystick::getZ,
+          () -> false,
+          drivetrain
+      )
+    );
 
     configureBindings();
   }

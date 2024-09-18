@@ -7,21 +7,21 @@ public class Ports {
     public static final int FL_DRIVE = 1;
     public static final int FL_STEER = 2;
 
-    public static final int BL_DRIVE = 3;
-    public static final int BL_STEER = 4;
+    public static final int BL_DRIVE = 4;
+    public static final int BL_STEER = 3;
 
-    public static final int BR_DRIVE = 5;
-    public static final int BR_STEER = 6;
+    public static final int BR_DRIVE = 11;
+    public static final int BR_STEER = 9;
 
     public static final int FR_DRIVE = 7;
-    public static final int FR_STEER = 8;
+    public static final int FR_STEER = 10;
 
     /*
      * DIO
      */
 
-    public static final int FL_ENCODER = 2;
-    // public static final int BL_ENCODER = 1;
-    // public static final int BR_ENCODER = 2;
-    // public static final int FR_ENCODER = 3;
+    public static final int FL_ENCODER = 0;
+    public static final int BL_ENCODER = 1;
+    public static final int BR_ENCODER = 2;
+    public static final int FR_ENCODER = 3;
 }

@@ -6,8 +6,6 @@ import com.ctre.phoenix.motorcontrol.VictorSPXControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 import com.ctre.phoenix.motorcontrol.can.VictorSPXConfiguration;
-import com.ctre.phoenix.motorcontrol.can.VictorSPXPIDSetConfiguration;
-import com.revrobotics.CANSparkMax;
 
 import edu.wpi.first.math.MathUtil;
 import edu.wpi.first.math.controller.PIDController;
@@ -57,6 +55,9 @@ public class SwerveModule {
             SwerveConstants.SwerveModule.STEER_MOTOR_D
         );
 
+        steerController.setSetpoint(0);
+        steerController.enableContinuousInput(0, 360);
+
         /*
          * Steer Motor Initialization
          */
@@ -69,12 +70,11 @@ public class SwerveModule {
     }
 
     public double getAngle() {
-        return encoder.getDistance();
+        return encoder.getDistance() % 360;
     }
 
     public void setState(double velocityMetersPerSecond, Rotation2d steerAngle) {
         SwerveModuleState desiredState = new SwerveModuleState(velocityMetersPerSecond, steerAngle);
-        // Reduce radians to 0 to 2pi range and simplify to nearest angle
         desiredState = SwerveModuleState.optimize(
                 desiredState,
                 Rotation2d.fromDegrees(getAngle()));
@@ -94,7 +94,20 @@ public class SwerveModule {
     }
 
     public void updateSteer() {
-        steerMotor.set(VictorSPXControlMode.PercentOutput, steerController.calculate(encoder.getDistance()) / 360);
+        SmartDashboard.putNumber(debugName + " PID Value", steerController.calculate(getAngle()) / 360);
+        double steerPCT = steerController.calculate(getAngle()) / 360;
+        if (Math.abs(steerPCT) < 0.20) {
+            if (Math.abs(steerPCT) > 0.075){
+                steerPCT = Math.copySign(SwerveConstants.SwerveModule.MIN_STEER_PCT, steerPCT);
+            } else {
+                steerPCT = 0;
+            }
+        }
+        steerMotor.set(VictorSPXControlMode.PercentOutput, steerPCT);
+    }
+
+    public void debug() {
+        SmartDashboard.putNumber(debugName + " encoder value", getAngle());
     }
 
     public static double getMaxVelocityMetersPerSecond() {
