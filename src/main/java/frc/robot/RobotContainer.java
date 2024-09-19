@@ -42,8 +42,8 @@ public class RobotContainer {
   }
 
   private void configureBindings() {
-    JoystickButton manualMotorButton = new JoystickButton(translationJoystick, 1);
-    manualMotorButton.whileTrue(new ManualMotorControlCommand(translationJoystick::getY, translationJoystick::getX, drivetrain.frontLeftModule));
+    // JoystickButton manualMotorButton = new JoystickButton(translationJoystick, 1);
+    // manualMotorButton.whileTrue(new ManualMotorControlCommand(translationJoystick::getY, translationJoystick::getX, drivetrain.frontLeftModule));
   }
 
   public Command getAutonomousCommand() {

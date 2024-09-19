@@ -41,12 +41,12 @@ public class ManualMotorControlCommand extends Command {
 
   @Override
   public void execute() {
-    module.setState(getDrive(), -getDrive());
+    module.setStateManual(getDrive(), -getDrive());
   }
 
   @Override
   public void end(boolean interrupted) {
-    module.setState(0, 0);
+    module.setStateManual(0, 0);
   }
 
   @Override

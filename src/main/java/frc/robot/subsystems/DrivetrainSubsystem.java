@@ -23,9 +23,9 @@ import frc.robot.Constants.DrivetrainConstants;
 
 public class DrivetrainSubsystem extends SubsystemBase {
   public final SwerveModule frontLeftModule; // this 'module' is public because the motor controllers are sometimes used to test other things
-  // private final SwerveModule backLeftModule;
-  // private final SwerveModule backRightModule;
-  // private final SwerveModule frontRightModule;
+  private final SwerveModule backLeftModule;
+  private final SwerveModule backRightModule;
+  private final SwerveModule frontRightModule;
 
   private final AHRS navx;
 
@@ -36,25 +36,29 @@ public class DrivetrainSubsystem extends SubsystemBase {
         Ports.FL_STEER,
         Ports.FL_ENCODER,
         "front left",
+        DrivetrainConstants.FRONT_LEFT_MIN_STEER_PCT,
         DrivetrainConstants.FRONT_LEFT_MODULE_STEER_OFFSET);
-    // backLeftModule = new SwerveModule(
-    //     Ports.BL_DRIVE,
-    //     Ports.BL_STEER,
-    //     Ports.BL_ENCODER,
-    //     "back left",
-    //     DrivetrainConstants.BACK_LEFT_MODULE_STEER_OFFSET);
-    // backRightModule = new SwerveModule(
-    //     Ports.BR_DRIVE,
-    //     Ports.BR_STEER,
-    //     Ports.BR_ENCODER,
-    //     "back right",
-    //     DrivetrainConstants.BACK_RIGHT_MODULE_STEER_OFFSET);
-    // frontRightModule = new SwerveModule(
-    //     Ports.BR_DRIVE,
-    //     Ports.BR_STEER,
-    //     Ports.BR_ENCODER,
-    //     "front right",
-    //     DrivetrainConstants.FRONT_RIGHT_MODULE_STEER_OFFSET);
+    backLeftModule = new SwerveModule(
+        Ports.BL_DRIVE,
+        Ports.BL_STEER,
+        Ports.BL_ENCODER,
+        "back left",
+        DrivetrainConstants.BACK_LEFT_MIN_STEER_PCT,
+        DrivetrainConstants.BACK_LEFT_MODULE_STEER_OFFSET);
+    backRightModule = new SwerveModule(
+        Ports.BR_DRIVE,
+        Ports.BR_STEER,
+        Ports.BR_ENCODER,
+        "back right",
+        DrivetrainConstants.BACK_RIGHT_MIN_STEER_PCT,
+        DrivetrainConstants.BACK_RIGHT_MODULE_STEER_OFFSET);
+    frontRightModule = new SwerveModule(
+        Ports.FR_DRIVE,
+        Ports.FR_STEER,
+        Ports.FR_ENCODER,
+        "front right",
+        DrivetrainConstants.FRONT_RIGHT_MIN_STEER_PCT,
+        DrivetrainConstants.FRONT_RIGHT_MODULE_STEER_OFFSET);
 
     navx = new AHRS(SPI.Port.kMXP, (byte) 200);
 
@@ -130,31 +134,31 @@ public class DrivetrainSubsystem extends SubsystemBase {
     frontLeftModule.setState(
         swerveModuleStates[0].speedMetersPerSecond,
         hasVelocity ? swerveModuleStates[0].angle : Rotation2d.fromDegrees(frontLeftModule.getAngle()));
-    // backLeftModule.setState(
-    // swerveModuleStates[1].speedMetersPerSecond,
-    // hasVelocity ? swerveModuleStates[1].angle :
-    // Rotation2d.fromDegrees(backLeftModule.getAngle()));
-    // backRightModule.setState(
-    // swerveModuleStates[2].speedMetersPerSecond,
-    // hasVelocity ? swerveModuleStates[2].angle :
-    // Rotation2d.fromDegrees(backRightModule.getAngle()));
-    // frontRightModule.setState(
-    // swerveModuleStates[3].speedMetersPerSecond,
-    // hasVelocity ? swerveModuleStates[3].angle :
-    // Rotation2d.fromDegrees(frontRightModule.getAngle()));
+    backLeftModule.setState(
+        swerveModuleStates[1].speedMetersPerSecond,
+        hasVelocity ? swerveModuleStates[1].angle : Rotation2d.fromDegrees(backLeftModule.getAngle()));
+    backRightModule.setState(
+        swerveModuleStates[2].speedMetersPerSecond,
+        hasVelocity ? swerveModuleStates[2].angle : Rotation2d.fromDegrees(backRightModule.getAngle()));
+    frontRightModule.setState(
+        swerveModuleStates[3].speedMetersPerSecond,
+        hasVelocity ? swerveModuleStates[3].angle : Rotation2d.fromDegrees(frontRightModule.getAngle()));
   }
 
   @Override
   public void periodic() {
     debug();
     frontLeftModule.updateSteer();
+    backLeftModule.updateSteer();
+    backRightModule.updateSteer();
+    frontRightModule.updateSteer();
   }
 
   public void debug() {
     frontLeftModule.debug();
-    // backRightModule.debug();
-    // backLeftModule.debug();
-    // frontRightModule.debug();
+    backRightModule.debug();
+    backLeftModule.debug();
+    frontRightModule.debug();
   }
 
   public static double getMaxVelocityMetersPerSecond() {
