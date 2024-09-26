@@ -13,13 +13,20 @@ public class Constants {
         public static final double DRIVETRAIN_WHEELBASE_METERS = Units.inchesToMeters(20.5);
 
         public static final Rotation2d FRONT_LEFT_MODULE_STEER_OFFSET = Rotation2d.fromDegrees(330);
-        public static final double FRONT_LEFT_MIN_STEER_PCT = 0.1;
+        public static final double FRONT_LEFT_MIN_STEER_PCT = 0;//0.075;
+        public static final double FRONT_LEFT_MIN_DRIVE_PCT = 0.05;
+
         public static final Rotation2d BACK_LEFT_MODULE_STEER_OFFSET = Rotation2d.fromDegrees(240);
-        public static final double BACK_LEFT_MIN_STEER_PCT = 0.075;
+        public static final double BACK_LEFT_MIN_STEER_PCT = 0;//0.075;
+        public static final double BACK_LEFT_MIN_DRIVE_PCT = 0.085;
+
         public static final Rotation2d BACK_RIGHT_MODULE_STEER_OFFSET = Rotation2d.fromDegrees(210);
-        public static final double BACK_RIGHT_MIN_STEER_PCT = 0.1;
+        public static final double BACK_RIGHT_MIN_STEER_PCT = 0;//0.055;
+        public static final double BACK_RIGHT_MIN_DRIVE_PCT = 0.11;
+
         public static final Rotation2d FRONT_RIGHT_MODULE_STEER_OFFSET = Rotation2d.fromDegrees(300);
-        public static final double FRONT_RIGHT_MIN_STEER_PCT = 0.125;
+        public static final double FRONT_RIGHT_MIN_STEER_PCT = 0;//0.125;
+        public static final double FRONT_RIGHT_MIN_DRIVE_PCT = 0.1;
 
         public static final SwerveDriveKinematics kinematics = new SwerveDriveKinematics(
                 // Front left

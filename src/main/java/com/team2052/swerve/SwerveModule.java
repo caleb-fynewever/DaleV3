@@ -22,6 +22,7 @@ public class SwerveModule {
     private PIDController steerController;
     private final DutyCycleEncoder encoder;
     private double minSteerPct;
+    private double minDrivePct;
     private String debugName;
 
     public SwerveModule(
@@ -30,6 +31,7 @@ public class SwerveModule {
             int encoderChannel,
             String debugName,
             double minSteerPct,
+            double minDrivePct,
             Rotation2d steerOffset) {
 
         this.debugName = debugName;
@@ -55,6 +57,8 @@ public class SwerveModule {
 
         driveLimiter = new SlewRateLimiter(0.15);
         
+        this.minDrivePct = minDrivePct;
+        
         /*
          *  Steer Controller Initialization
          */
@@ -65,7 +69,7 @@ public class SwerveModule {
             SwerveConstants.SwerveModule.STEER_MOTOR_D
         );
 
-        steerController.setTolerance(2);
+        steerController.setTolerance(3);
         steerController.enableContinuousInput(0, 360);
 
         /*
@@ -94,9 +98,15 @@ public class SwerveModule {
         //         desiredState,
         //         Rotation2d.fromDegrees(getAngle()));
 
-        // Set the motor to our desired velocity as a percentage of our max velocity
-        driveMotor.set(TalonSRXControlMode.PercentOutput,
-                Math.min(driveLimiter.calculate(desiredState.speedMetersPerSecond / getMaxVelocityMetersPerSecond()), SwerveConstants.SwerveModule.MAX_DRIVE_PCT));
+        double drivePct = desiredState.speedMetersPerSecond / getMaxVelocityMetersPerSecond();
+
+        if (Math.abs(drivePct) > SwerveConstants.SwerveModule.MAX_DRIVE_PCT) {
+            drivePct = Math.copySign(SwerveConstants.SwerveModule.MAX_DRIVE_PCT, drivePct);
+        }
+
+        drivePct += Math.copySign(minDrivePct, drivePct);
+        
+        driveMotor.set(TalonSRXControlMode.PercentOutput, drivePct);
 
         steerController.setSetpoint(desiredState.angle.getDegrees());
 
@@ -111,12 +121,17 @@ public class SwerveModule {
     public void updateSteer() {
         SmartDashboard.putNumber(debugName + " PID Value", steerController.calculate(getAngle()) / 360);
         double steerPCT = steerController.calculate(getAngle()) / 360;
+
+        if(Math.abs(steerPCT) > SwerveConstants.SwerveModule.MAX_STEER_PCT) {
+            steerPCT = Math.copySign(SwerveConstants.SwerveModule.MAX_STEER_PCT, steerPCT);
+        }
+
         if (!steerController.atSetpoint()) {
             steerPCT += Math.copySign(minSteerPct, steerPCT);
         } else {
             steerPCT = 0;
         }
-        steerMotor.set(VictorSPXControlMode.PercentOutput, Math.min(steerPCT, SwerveConstants.SwerveModule.MAX_STEER_PCT));
+        steerMotor.set(VictorSPXControlMode.PercentOutput, steerPCT);
     }
 
     public void debug() {

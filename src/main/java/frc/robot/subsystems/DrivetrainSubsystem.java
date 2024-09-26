@@ -37,6 +37,7 @@ public class DrivetrainSubsystem extends SubsystemBase {
         Ports.FL_ENCODER,
         "front left",
         DrivetrainConstants.FRONT_LEFT_MIN_STEER_PCT,
+        DrivetrainConstants.FRONT_LEFT_MIN_DRIVE_PCT,
         DrivetrainConstants.FRONT_LEFT_MODULE_STEER_OFFSET);
     backLeftModule = new SwerveModule(
         Ports.BL_DRIVE,
@@ -44,6 +45,7 @@ public class DrivetrainSubsystem extends SubsystemBase {
         Ports.BL_ENCODER,
         "back left",
         DrivetrainConstants.BACK_LEFT_MIN_STEER_PCT,
+        DrivetrainConstants.BACK_LEFT_MIN_DRIVE_PCT,
         DrivetrainConstants.BACK_LEFT_MODULE_STEER_OFFSET);
     backRightModule = new SwerveModule(
         Ports.BR_DRIVE,
@@ -51,6 +53,7 @@ public class DrivetrainSubsystem extends SubsystemBase {
         Ports.BR_ENCODER,
         "back right",
         DrivetrainConstants.BACK_RIGHT_MIN_STEER_PCT,
+        DrivetrainConstants.BACK_RIGHT_MIN_DRIVE_PCT,
         DrivetrainConstants.BACK_RIGHT_MODULE_STEER_OFFSET);
     frontRightModule = new SwerveModule(
         Ports.FR_DRIVE,
@@ -58,6 +61,7 @@ public class DrivetrainSubsystem extends SubsystemBase {
         Ports.FR_ENCODER,
         "front right",
         DrivetrainConstants.FRONT_RIGHT_MIN_STEER_PCT,
+        DrivetrainConstants.FRONT_RIGHT_MIN_DRIVE_PCT,
         DrivetrainConstants.FRONT_RIGHT_MODULE_STEER_OFFSET);
 
     navx = new AHRS(SPI.Port.kMXP, (byte) 200);

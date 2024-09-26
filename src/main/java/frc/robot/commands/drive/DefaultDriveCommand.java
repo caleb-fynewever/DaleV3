@@ -50,7 +50,7 @@ public class DefaultDriveCommand extends Command {
     }
 
     protected double getX() {
-        return slewAxis(xLimiter, deadBand(-xSupplier.getAsDouble()));
+        return slewAxis(xLimiter, deadBand(xSupplier.getAsDouble()));
     }
 
     protected double getY() {

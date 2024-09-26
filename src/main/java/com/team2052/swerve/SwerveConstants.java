@@ -15,11 +15,10 @@ public final class SwerveConstants {
     public static final class SwerveModule {
         public static final int CIM_ROUNDS_PER_MINUTE = 5330;
     
-        public static final double STEER_MOTOR_P = 0.65;
+        public static final double STEER_MOTOR_P = 0.5;
         public static final double STEER_MOTOR_I = 0.0;
-        public static final double STEER_MOTOR_D = 0.1;
+        public static final double STEER_MOTOR_D = 0.0;
 
-        public static final double MIN_STEER_PCT = 0.175;
         public static final double MAX_DRIVE_PCT = 0.50;
         public static final double MAX_STEER_PCT = 0.50;
 

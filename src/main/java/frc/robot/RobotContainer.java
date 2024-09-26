@@ -32,7 +32,7 @@ public class RobotContainer {
           // Sideways velocity supplier.
           translationJoystick::getX,
           // Rotation velocity supplier.
-          translationJoystick::getZ,
+          rotationJoystick::getX,
           () -> false,
           drivetrain
       )
